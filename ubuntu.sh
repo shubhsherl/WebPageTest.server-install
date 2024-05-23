@@ -17,12 +17,21 @@ until sudo apt-get update
 do
     sleep 1
 done
+until sudo add-apt-repository ppa:ondrej/php
+do
+    sleep 1
+done
+until sudo apt-get update
+do
+    sleep 1
+done
 until sudo DEBIAN_FRONTEND=noninteractive apt-get -yq -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
 do
     sleep 1
 done
+
 until sudo apt-get install -y git screen nginx beanstalkd zip unzip curl \
-    php-fpm php-apcu php-sqlite3 php-curl php-gd php-zip php-mbstring php-xml php-redis \
+    php7.4-fpm php7.4-apcu php7.4-sqlite3 php7.4-curl php7.4-gd php7.4-zip php7.4-mbstring php7.4-xml php7.4-redis \
     imagemagick ffmpeg libjpeg-turbo-progs libimage-exiftool-perl \
     software-properties-common psmisc
 do
